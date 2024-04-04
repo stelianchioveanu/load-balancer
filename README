@@ -1,0 +1,34 @@
+// Copyright 2021 Chioveanu Stelian-Ovidiu
+
+    Load Balancer folosind Consistent Hashing
+
+    Primul pas a fost de a declara structurile de tip nod, listă simplu
+înlănțuită și hashtable în fișierele "linked_list.h" și "hashtable.h", ale
+caror functii au fost implementate in fisirele "linked_list.c" și "hashtable.c".
+Acestea cuprind: alocarea și inițializarea listei/hashtable-ului, adăugarea și
+ștergerea unui nod din listă/ a unei chei din hashtable, eliberarea memoriei
+unei liste/ unui hashtable, funcțiile de hashing (primite in scheletul temei),
+de comparare a cheilor, aflarea valorii corespunzătoare cheii key din hashtable
+si eliminarea intrării asociate unei chei.
+    Al doilea pas a fost de a declara structurile de tip server și load balancer
+în fișierele "server.h" și "load_balancer.h", ale caror functii au fost
+implementate in fisierele "server.c" și "load_balancer.c". Acestea cuprind:
+init_server_memory, init_load_balancer, free_server_memory, free_load_balancer,
+server_store, loader_store, server_retrieve, loader_retrieve, server_remove,
+loader_add_server, loader_remove_server, avand nume sugestive pentru actiunile
+lor. 
+    Ulterior imi construiesc header-ele "move_keys.h", "search_pos.h",
+"hashring.h", ale caror functii au fost implementate in fisierele :
+"move_keys.c", "search_pos.c", "hashring.c". Acestea cuprind:
+add_in_hashring, remove_from_hashring(adauga/sterge replici din hashring
+folosind o shiftare la dreapta sau stanga dupa caz), move_keys_add,
+move_keys_remove, search_key_and_move (acestea redistribuie cheile de pe
+serverul sters/ de pe restul serverelor in restul serverelor/ serverul nou
+adaugat), search_pos_in_hashring(cauta pozitia corespunzatoare replcii folosind
+o cautare binara speciala), search_server_by_key(cauta serverul corespunzator
+cheii folosind o cautare binara speciala), search_pos_in_hashring_by_server_id
+(cauta pozitia corespunzatoare replicii in functie de server_id, tratand cazul
+special in care in hashring se afla mai multe replici cu acelasi hashring) si
+special_binary_search.
+    Nu in ultimul rand includ noile fisiere de tip ".c" in Makefile, finalizand cu
+rezolvarea erorilor de valgrind si de compilare.
